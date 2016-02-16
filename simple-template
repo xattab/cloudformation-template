@@ -1,0 +1,120 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "sgWEB": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "web",
+        "VpcId": {
+          "Ref": "vpc62f5c907"
+        }
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "29ad9618-c063-482e-9166-a33b182f5f0f"
+        }
+      }
+    },
+    "ingress1": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "sgWEB"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": "80",
+        "ToPort": "80",
+        "CidrIp": "0.0.0.0/0"
+      }
+    },
+    "ingress2": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "sgWEB"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": "22",
+        "ToPort": "22",
+        "CidrIp": "0.0.0.0/0"
+      }
+    },
+    "ingress3": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "sgWEB"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": "443",
+        "ToPort": "443",
+        "CidrIp": "0.0.0.0/0"
+      }
+    },
+    "egress1": {
+      "Type": "AWS::EC2::SecurityGroupEgress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "sgWEB"
+        },
+        "IpProtocol": "-1",
+        "CidrIp": "0.0.0.0/0"
+      }
+    },
+    "I4B7WC": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "SecurityGroupIds": [
+          {
+            "Ref": "sgWEB"
+          }
+        ]
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "3e7b6c17-2bd8-4e29-ab8e-42e9fc5f0c6f"
+        }
+      }
+    }
+  },
+  "Description": "WEB",
+  "Metadata": {
+    "AWS::CloudFormation::Designer": {
+      "29ad9618-c063-482e-9166-a33b182f5f0f": {
+        "size": {
+          "width": 60,
+          "height": 60
+        },
+        "position": {
+          "x": -880,
+          "y": 520
+        },
+        "z": 0,
+        "embeds": []
+      },
+      "3e7b6c17-2bd8-4e29-ab8e-42e9fc5f0c6f": {
+        "size": {
+          "width": 60,
+          "height": 60
+        },
+        "position": {
+          "x": -700,
+          "y": 520
+        },
+        "z": 0,
+        "ismemberof": [
+          "29ad9618-c063-482e-9166-a33b182f5f0f"
+        ]
+      },
+      "d2c242f2-3bb2-44bc-a9c0-b3289c8418af": {
+        "source": {
+          "id": "3e7b6c17-2bd8-4e29-ab8e-42e9fc5f0c6f"
+        },
+        "target": {
+          "id": "29ad9618-c063-482e-9166-a33b182f5f0f"
+        },
+        "z": 1
+      }
+    }
+  }
+}
